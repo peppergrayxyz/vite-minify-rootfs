@@ -1,0 +1,18 @@
+name: ci
+
+on:
+  push:
+
+jobs:
+  arm64-scs:
+    runs-on: ubuntu-latest-arm
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Podman
+        uses: redhat-actions/podman-install@main
+
+      - name: build and run rootfs
+        run: |
+          ./vite-minify-rootfs.sh
